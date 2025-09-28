@@ -1,8 +1,12 @@
 @import "tailwindcss";
 
 @font-face {
-    font-family: "PressStart2P-Regular";
-    src: url("/assets/fonts/PressStart2P-Regular.ttf") format("ttf");
+    font-family: "PressStart2P";
+    src: url("PressStart2P-Regular.ttf") format("truetype");
     font-weight: normal;
     font-style: normal;
+}
+
+@theme {
+    --font-sans: "PressStart2P", ui-sans-serif, system-ui, sans-serif;
 }
