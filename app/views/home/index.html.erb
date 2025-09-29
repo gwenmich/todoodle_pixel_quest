@@ -1,4 +1,57 @@
-<div>
-  <h1 class="font-bold text-4xl">Home#index</h1>
-  <p>Find me in app/views/home/index.html.erb</p>
+<div class="flex flex-wrap gap-6 justify-center w-full">
+  <div class="relative w-full max-w-lg p-4 bg-orange-50 rounded-lg shadow-sm sm:p-8">
+    <div class="absolute inset-2 border-2 border-amber-600/30 border-dashed rounded-lg pointer-events-none"></div>
+    <div class="relative">
+      <div class="flex items-center justify-between mb-6">
+        <h5 class="text-xl font-bold leading-none text-orange-900">Quests</h5>
+        <%= link_to root_path, class: "text-sm font-medium text-emerald-700 hover:underline" do %>
+          View all
+        <% end %>
+      </div>
+    </div>
+
+    <% if @quests.any? %>
+      <ul class="my-4 space-y-3">
+        <% @quests.each do |quest| %>
+          <li>
+            <%= link_to quest_path(quest), class: "flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-teal-500/10 hover:bg-amber-100 hover:shadow-md transition-all duration-200 group" do %>
+              <span class="flex-1 ms-3 whitespace-nowrap"><%= quest.name %></span>
+              <span class="inline-flex items-center justify-center px-2 py-0.5 ms-3 text-xs font-medium text-gray-500 bg-gray-200 rounded-sm group-hover:bg-amber-200 group-hover:text-amber-900">
+                <%= pluralize(quest.tasks.count, "task") %>
+              </span>
+            <% end %>
+          </li>
+        <% end %>
+        <%= link_to new_quest_path, class: "flex items-center gap-2 bg-emerald-700 hover:bg-emerald-800 text-white font-semibold px-4 py-2 rounded" do %>
+          <span class="text-xl">+</span>
+          <span>Add Quest</span>
+        <% end %>
+      </ul>
+    <% else %>
+      <div class="flex flex-col items-center justify-center h-40 text-center space-y-3">
+        <p class="text-sm font-normal text-gray-500">Ready for a new adventure?</p>
+        <%= link_to new_quest_path, class: "flex items-center gap-2 bg-emerald-700 hover:bg-emerald-600 hover:shadow-md text-white font-semibold px-4 py-2 rounded" do %>
+          <span class="text-xl">+</span>
+          <span>Add Quest</span>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="relative w-full max-w-lg p-4 bg-orange-50 rounded-lg shadow-sm sm:p-8">
+    <div class="absolute inset-2 border-2 border-amber-600/30 border-dashed rounded-lg"></div>
+    <div class="relative">
+      <h5 class="text-xl font-bold leading-none text-orange-900">Instructions</h5>
+        <ul class="my-4 space-y-3">
+          <% instructions.each_with_index do |instruction, index| %>
+            <li>
+              <div class="flex gap-3 p-3">
+                <span class="font-normal text-lg text-gray-600"><%= index + 1 %>.</span>
+                <span class="font-normal text-md text-gray-500"><%= instruction %></span>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+    </div>
+  </div>
 </div>
